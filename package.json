@@ -1,0 +1,23 @@
+{
+  "name": "mcplock",
+  "version": "0.1.0",
+  "description": "Lockfile and drift monitor for MCP servers. Pins every tool's name, description and schema; fails when a tool silently changes.",
+  "type": "module",
+  "bin": {
+    "mcplock": "./src/cli.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "typecheck": "bunx tsc --noEmit",
+    "fixture": "bun run test/fixtures/server.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "bun-types": "^1.4.2",
+    "typescript": "^7.0.2"
+  }
+}

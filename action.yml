@@ -1,0 +1,26 @@
+name: mcplock
+description: Fail the build when an MCP server's tool surface drifts from mcp.lock.json or contains poisoned tool text.
+inputs:
+  config:
+    description: Client config to read (e.g. .mcp.json). Default: every known path that exists.
+    required: false
+    default: ""
+  lock:
+    description: Lockfile path.
+    required: false
+    default: mcp.lock.json
+  fail-on:
+    description: high | medium | low | none
+    required: false
+    default: high
+runs:
+  using: composite
+  steps:
+    - uses: oven-sh/setup-bun@v2
+    - shell: bash
+      run: |
+        cd "${{ github.action_path }}" && bun install --frozen-lockfile
+        cd "${{ github.workspace }}"
+        args=(check --lock "${{ inputs.lock }}" --fail-on "${{ inputs['fail-on'] }}")
+        [ -n "${{ inputs.config }}" ] && args+=(--config "${{ inputs.config }}")
+        bun "${{ github.action_path }}/src/cli.ts" "${args[@]}"
