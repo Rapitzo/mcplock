@@ -3,7 +3,7 @@
 Lockfile and tool-poisoning scanner for MCP servers: pin every tool's text, fail when it changes.
 
 [![CI](https://github.com/Rapitzo/mcplock/actions/workflows/ci.yml/badge.svg)](https://github.com/Rapitzo/mcplock/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/mcplock)](https://www.npmjs.com/package/mcplock)
+[![npm](https://img.shields.io/npm/v/@rickardlind/mcplock)](https://www.npmjs.com/package/@rickardlind/mcplock)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 An MCP server can change what it tells the model after you approved it. The tool you installed last
@@ -21,9 +21,9 @@ hidden `<IMPORTANT>` tags, invisible Unicode, references to other servers' tools
 mcplock runs on [Bun](https://bun.sh) 1.1 or newer. Node support is planned.
 
 ```sh
-bunx mcplock --help        # run without installing
-bun add -g mcplock         # install globally with Bun
-npm install -g mcplock     # npm works too; the CLI still needs bun on your PATH
+bunx @rickardlind/mcplock --help   # run without installing
+bun add -g @rickardlind/mcplock    # install globally with Bun
+npm install -g @rickardlind/mcplock   # npm works too; the CLI still needs bun on your PATH
 ```
 
 ## Quick start
@@ -132,7 +132,7 @@ Or call the CLI directly:
 
 ```yaml
 - uses: oven-sh/setup-bun@v2
-- run: bunx mcplock check --config .mcp.json
+- run: bunx @rickardlind/mcplock check --config .mcp.json
 ```
 
 The runner has to start or reach every server in the config, so the job needs whatever env vars

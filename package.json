@@ -1,6 +1,7 @@
 {
-  "name": "mcplock",
+  "name": "@rickardlind/mcplock",
   "version": "0.1.0",
+  "publishConfig": { "access": "public" },
   "description": "Lockfile and tool-poisoning scanner for MCP servers. Pins every tool's name, description and schema; fails when a tool silently changes.",
   "keywords": [
     "mcp",
