@@ -1,17 +1,47 @@
 {
   "name": "mcplock",
   "version": "0.1.0",
-  "description": "Lockfile and drift monitor for MCP servers. Pins every tool's name, description and schema; fails when a tool silently changes.",
+  "description": "Lockfile and tool-poisoning scanner for MCP servers. Pins every tool's name, description and schema; fails when a tool silently changes.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "lockfile",
+    "security",
+    "tool-poisoning",
+    "prompt-injection",
+    "ai-agents",
+    "claude",
+    "cli",
+    "github-action"
+  ],
+  "homepage": "https://github.com/Rapitzo/mcplock#readme",
+  "bugs": {
+    "url": "https://github.com/Rapitzo/mcplock/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rapitzo/mcplock.git"
+  },
+  "license": "MIT",
+  "author": "Rickard Lindbom (https://portfolio-rick.vercel.app/)",
   "type": "module",
   "bin": {
-    "mcplock": "./src/cli.ts"
+    "mcplock": "src/cli.ts"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "bun": ">=1.1.0"
   },
   "scripts": {
     "test": "bun test",
     "typecheck": "bunx tsc --noEmit",
     "fixture": "bun run test/fixtures/server.ts"
   },
-  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^4.5.4"

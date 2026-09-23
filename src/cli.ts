@@ -21,7 +21,7 @@ interface Options {
   failOn: Severity | "none";
 }
 
-const HELP = `mcplock — lockfile and drift monitor for MCP servers
+const HELP = `mcplock: lockfile and tool-poisoning scanner for MCP servers
 
 Usage
   mcplock init    [options]   connect to every configured server, write mcp.lock.json, scan for poisoned text
@@ -34,7 +34,7 @@ Options
   --lock <path>       lockfile path. Default: ./mcp.lock.json
   --server <name>     only this server (repeatable)
   --timeout <ms>      per-server connect+list timeout. Default: 20000
-  --fail-on <level>   high | medium | low | none — findings at or above this level fail the run. Default: high
+  --fail-on <level>   high | medium | low | none. Findings at or above this level fail the run. Default: high
   --update            with check: rewrite the lockfile after reporting drift
   --live              with scan: fetch tools from servers instead of reading the lockfile
   --json              machine-readable output

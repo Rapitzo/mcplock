@@ -2,7 +2,7 @@ name: mcplock
 description: Fail the build when an MCP server's tool surface drifts from mcp.lock.json or contains poisoned tool text.
 inputs:
   config:
-    description: Client config to read (e.g. .mcp.json). Default: every known path that exists.
+    description: "Client config to read (e.g. .mcp.json). Default: every known path that exists."
     required: false
     default: ""
   lock:
@@ -18,9 +18,14 @@ runs:
   steps:
     - uses: oven-sh/setup-bun@v2
     - shell: bash
+      env:
+        MCPLOCK_LOCK: ${{ inputs.lock }}
+        MCPLOCK_FAIL_ON: ${{ inputs['fail-on'] }}
+        MCPLOCK_CONFIG: ${{ inputs.config }}
+        MCPLOCK_ACTION_PATH: ${{ github.action_path }}
       run: |
-        cd "${{ github.action_path }}" && bun install --frozen-lockfile
-        cd "${{ github.workspace }}"
-        args=(check --lock "${{ inputs.lock }}" --fail-on "${{ inputs['fail-on'] }}")
-        [ -n "${{ inputs.config }}" ] && args+=(--config "${{ inputs.config }}")
-        bun "${{ github.action_path }}/src/cli.ts" "${args[@]}"
+        cd "$MCPLOCK_ACTION_PATH" && bun install --frozen-lockfile
+        cd "$GITHUB_WORKSPACE"
+        args=(check --lock "$MCPLOCK_LOCK" --fail-on "$MCPLOCK_FAIL_ON")
+        if [ -n "$MCPLOCK_CONFIG" ]; then args+=(--config "$MCPLOCK_CONFIG"); fi
+        bun "$MCPLOCK_ACTION_PATH/src/cli.ts" "${args[@]}"
