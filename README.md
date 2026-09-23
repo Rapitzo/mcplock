@@ -155,6 +155,10 @@ and credentials those servers need.
 - Lock prompts and resources, not only tools
 - Signed tool manifests, so a server's published tool text can be verified before a client trusts it
 
+## Related tools
+
+[MCP-Scan](https://github.com/snyk/agent-scan) (built by Invariant Labs, now maintained by Snyk) also pins tool hashes to catch rug pulls, and adds guardrail-based checks for prompt injection and cross-server tool shadowing. mcplock is smaller: a lockfile you commit to the repo, local text checks only, and nothing leaves your machine. If you want the broader scanner, use MCP-Scan.
+
 ## Development
 
 ```sh
